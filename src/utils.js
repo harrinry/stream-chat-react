@@ -185,7 +185,14 @@ export const renderText = (text, mentioned_users) => {
       type === 'email'
         ? value
         : truncate(value.replace(/(http(s?):\/\/)?(www\.)?/, ''), 20);
-    newText = newText.replace(value, `[${displayLink}](${encodeURI(href)})`);
+    newText = newText.replace(
+      value,
+      `[${displayLink}](${
+        href.includes('dutchie') || href.includes('dtche')
+          ? href
+          : encodeURI(href)
+      })`,
+    );
   });
 
   if (mentioned_users && mentioned_users.length) {
